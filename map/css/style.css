@@ -1,0 +1,29 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url(../img/map.JPG) no-repeat;
+    background-position: center;
+    background-size: contain; /* 设置背景图像按原比例尽可能填充 */
+	background-color: black;
+
+}
+
+
+h1:nth-child(1){
+	transform: translate(-50%,-300%);
+}
+h1:nth-child(2){
+	transform: translate(250%,150%);
+}
+canvas{
+	position: fixed;
+	left: 0;
+	top: 0;
+	/* pointer-events: ; */
+}

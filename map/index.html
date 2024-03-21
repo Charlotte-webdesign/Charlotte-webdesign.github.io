@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>light</title>
+    <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+      * {
+        user-select: none;
+        cursor: none;
+      }
+
+      #canva1 {
+        background: transparent;
+      }
+
+      body {
+        overflow: hidden;
+      }
+
+      .map_block_container {
+        position: relative;
+        /* 父元素设置为相对定位 */
+      }
+
+      .map_block {
+        width: 0px;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 20px solid red;
+        /* 这里设置三角形的颜色 */
+
+        position: absolute;
+        transition: 0.5s all ease-in-out;
+        cursor: crosshair;
+        right: 0;
+        top: 0;
+      }
+
+      .map_block:hover {
+        background: yellow;
+      }
+
+      .container {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+      }
+
+      .dialog {
+        width: auto;
+        text-align: center;
+        font-size: 20px;
+        /* 设置文字大小 */
+        transition: 1s all;
+        background: red;
+        opacity: 0;
+      }
+
+      /* .map_block:hover div div {
+        opacity: 1;
+      } */
+      #custom-cursor {
+        display: flex;
+        justify-content: center;
+
+        /* transition: 1s filter; */
+        /* 确保子元素相对于该元素定位 */
+        background: red;
+        /* transition: 1s filter ease-in-out; */
+      }
+
+      #custom-cursor div img {
+        transition: 1s all;
+        rotate: -45deg;
+        width: 50px;
+        position: absolute;
+        top: -10px;
+        left: -20px;
+      }
+
+      .hover_now {
+        /* rotate: 360deg; */
+        filter: grayscale(100%);
+      }
+
+      .show {
+        display: block;
+      }
+
+      .custom_cursor_img {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container"></div>
+
+    <canvas class="canva2" style="z-index: 1"></canvas>
+    <!-- cursor -->
+    <div id="custom-cursor" style="position: fixed; pointer-events: none">
+      <div style="position: relative">
+        <img
+          id="custom_cursor_img1"
+          class="show"
+          style="position: absolute"
+          src=" ./img/Torch.gif"
+        />
+        <img
+          id="custom_cursor_img2"
+          class=""
+          style="position: absolute; display: none; transition: 1s all"
+          src=" ./img/Soul_Torch.gif"
+        />
+        <!-- none -->
+      </div>
+    </div>
+
+    <script>
+      let json = [
+        {
+          id: 1,
+          name: "斯奈菲尔",
+          r: 1100,
+          t: 430,
+          txt1: "Entrance to the center of the Earth:Snæfellsjokull Volcanoes are glaciers. The eruption occurred in the supply of 200 years",
+        },
+        {
+          id: 2,
+          name: "吉格尔",
+          r: 900,
+          t: 530,
+          txt1: "The only way in the world to get inside Thrihnukagigur",
+        },
+        {
+          id: 3,
+          name: "艾雅法亚",
+          r: 700,
+          t: 570,
+          txt1: "Eyjafjallajokull Big outbreak in 2010 Flight delay",
+        },
+        {
+          id: 4,
+          name: "卡特拉",
+          r: 620,
+          t: 550,
+          txt1: "Most dangerous Katla Terrible glacial river flooding」",
+        },
+        {
+          id: 5,
+          name: "赫克拉",
+          r: 700,
+          t: 470,
+          txt1: "The gates of hell Hekla Most active It erupted more than 20 times Massive livestock die-off",
+        },
+        {
+          id: 6,
+          name: "克拉夫",
+          r: 607,
+          t: 216,
+          txt1: "Krafla Cold water volcanic lake blue. Feminine name",
+        },
+        {
+          id: 7,
+          name: "基尔",
+          r: 607,
+          t: 236,
+          txt1: "Hverfjall Feeling of conquest Ease to the top Deathly silence",
+        },
+        {
+          id: 8,
+          name: "格里姆",
+          r: 557,
+          t: 436,
+          txt1: "Grimsvotn Most deadly Lava Max Global temperature drop Crop reduction",
+        },
+
+        {
+          id: 9,
+          name: "阿斯加",
+          r: 457,
+          t: 256,
+          txt1: "Askja maximum Hot spring Mysterious beauty",
+        },
+      ];
+
+      // 获取容器元素
+      var container = document.querySelector(".container");
+
+      // 遍历 JSON 数组
+      json.forEach(function (item) {
+        // 创建外层的 div.map_block 元素
+        var mapBlock = document.createElement("div");
+        mapBlock.classList.add("map_block");
+        mapBlock.setAttribute("id", item.name); // 将 name 属性作为 id 添加到 map_block 元素中
+        mapBlock.setAttribute(
+          "style",
+          "right:" + item.r + "px; top:" + item.t + "px;"
+        );
+        mapBlock.setAttribute("show", 0);
+
+        // 创建内层的 div 元素
+        var innerDiv = document.createElement("div");
+        innerDiv.setAttribute("style", "position: relative;");
+
+        // 在内层 div 中创建 div.dialog 元素
+        var dialogDiv = document.createElement("div");
+        dialogDiv.classList.add("dialog");
+        dialogDiv.setAttribute(
+          "style",
+          "position: absolute;" +
+            "top:0;border:2px solid black;z-index:0;background:pink;"
+        );
+        dialogDiv.textContent = item.txt1; // 设置文本内容为 123
+
+        // 将 div.dialog 元素添加到内层 div 中
+        innerDiv.appendChild(dialogDiv);
+
+        // 将内层 div 添加到外层的 div.map_block 中
+        mapBlock.appendChild(innerDiv);
+
+        // 将整个结构添加到容器中
+        container.appendChild(mapBlock);
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        // 获取所有的 map_block 元素
+        const hoverableElements = document.querySelectorAll(".map_block");
+
+        hoverableElements.forEach(function (hoverableElement) {
+          document.addEventListener("click", function (e) {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+
+            const rect = hoverableElement.getBoundingClientRect();
+
+            const elementLeft = rect.left;
+            const elementTop = rect.top;
+            const elementRight = rect.right;
+            const elementBottom = rect.bottom;
+
+            // 检查鼠标是否位于当前元素内部
+            if (
+              mouseX >= elementLeft &&
+              mouseX <= elementRight &&
+              mouseY >= elementTop &&
+              mouseY <= elementBottom
+            ) {
+              // 获取名为 .dialog 的子元素
+              const dialog = hoverableElement.querySelector(".dialog");
+
+              // 设置 .dialog 元素的样式
+              dialog.style.opacity = 1;
+
+              const dialogRect = dialog.getBoundingClientRect();
+              const dialogLeft = dialogRect.left;
+              const dialogTop = dialogRect.top;
+              const viewportHeight = window.innerHeight;
+              const offsetHeight = dialog.offsetHeight;
+
+              console.log(dialogTop);
+
+              let show = dialog.getAttribute("show");
+
+              if (show == 0) {
+                dialog.style.opacity = 1;
+                dialog.setAttribute("show", 1);
+              } else if (show == 1) {
+                dialog.style.top =
+                  viewportHeight - dialogTop - offsetHeight - 2 + "px";
+                console.log(dialog.getAttribute("show"));
+              }
+              dialog.setAttribute("show", "1");
+            } else {
+              hoverableElement.classList.remove("hover_now");
+            }
+          });
+        });
+      });
+    </script>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

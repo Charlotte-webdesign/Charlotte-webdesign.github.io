@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+
+    <title>3滑动对比效果</title>
+    <!-- 引入字体图标 -->
+    <!-- <link rel="stylesheet" href="/fonts/css/font-awesome.css" /> -->
+    <link rel="stylesheet" href="./css/p.css" />
+    <style>
+      /* CSS styles here */
+    </style>
+  </head>
+
+  <body>
+    <!-- 背景 -->
+    <div class="blocks_bg_container"></div>
+
+    <div style="display: block;" class="container">
+      <div class="bottom">
+        <img src="img/3.png" alt="" />
+      </div>
+      <div class="middle">
+        <img src="img/2.png" alt="" />
+      </div>
+      <div class="scroller scroller-middle">
+        <i class="fa fa-arrows-h"></i>
+      </div>
+      <div class="top">
+        <img src="img/1.png" alt="" />
+      </div>
+      <div class="scroller scroller-top">
+        <i class="fa fa-arrows-h"></i>
+      </div>
+    </div>
+    <script src="./js/j.js"></script>
+    <!-- Left -->
+    <div class="emojiContainer ec1 emoji">
+      <img class="" src="./img/emoji1.gif" alt="" />
+      <div class="colorButtonBox">
+        <div
+          style="background-color: #9ca3af"
+          class="colorButton colorButtonGroup1"
+          onclick="changeCommentColor('.comment1', '#9ca3af,#4b5563','#4b5563')"
+        ></div>
+        <div
+          style="background-color: #facc15"
+          class="colorButton colorButtonGroup1"
+          onclick="changeCommentColor('.comment1', '#facc15,#ca8a04','#ca8a04')"
+        ></div>
+        <div
+          style="background-color: #3b82f6"
+          class="colorButton colorButtonGroup1"
+          onclick="changeCommentColor('.comment1', '#3b82f6,#1d4ed8','#2563eb')"
+        ></div>
+      </div>
+      <!-- comment -->
+      <div id="commentBox1">
+        <!-- 1 -->
+        <!-- <div class="comment comment1" style="right: -420px">
+          On my volcano grows the Grass A meditative spot —An acre for a Bird to choose Would be the General thought
+        </div> -->
+        <!-- 2 -->
+        <!-- <div class="comment comment1" style="right: -220px; top: 400px">
+          Let the fire rage on.Flames never seemed to bother me anyway.It's
+          funny how this inferno makes everything lookbright
+        </div> -->
+        <!-- 3 -->
+        <!-- <div class="comment comment1" style="left: 20px; top: 300px">dead</div> -->
+      </div>
+    </div>
+    <!-- Right -->
+    <div class="emojiContainer ec2 emoji">
+      <img src="./img/emoji2.png" alt="" srcset="" />
+      <div class="colorButtonBox">
+        <div
+          style="background-color: #22c55e"
+          class="colorButton colorButtonGroup2"
+          onclick="changeCommentColor('.comment2', '#22c55e,#15803d','#16a34a')"
+        ></div>
+        <div
+          style="background-color: #f472b6"
+          class="colorButton colorButtonGroup2"
+          onclick="changeCommentColor('.comment2', '#f472b6,#db2777','#ec4899')"
+        ></div>
+        <div
+          style="background-color: #fb923c"
+          class="colorButton colorButtonGroup2"
+          onclick="changeCommentColor('.comment2', '#fb923c,#ea580c','#f97316')"
+        ></div>
+      </div>
+      <!-- comment -->
+      <div id="commentBox2">
+        <!-- 4 -->
+        <!-- <div class="comment comment2" style="right: 120px; width: 400px">
+          How red the Fire rocks below How insecure the sod Did I
+          disclose，Would populate with awe my solitude.
+        </div> -->
+        <!-- 5 -->
+        <!-- <div
+          class="comment comment2"
+          style="right: 220px; top: 350px; width: 400px"
+        >
+          the volcano glows red and everyone's dead not a body to be seen.The
+          flames keep roaring like the furnace that's inside.Let them burn, let
+          them burn!
+        </div> -->
+        <!-- 6 -->
+        <!-- <div class="comment comment2" style="left: 60px; top: 300px">live</div> -->
+        <!-- 7 -->
+        <!-- <div
+          class="comment comment2"
+          style="right: 40px; top: 520px; width: 400px"
+        >
+          My soul's the engine that will burn this world downto the ground!
+        </div> -->
+      </div>
+    </div>
+
+    <script>
+      function changeCommentColor(commentClass, colorStr, border) {
+        let colors = colorStr.split(',');
+
+        var comments = document.querySelectorAll(commentClass);
+        comments.forEach(function (comment) {
+          comment.style.background = `linear-gradient(${colors[0]}, ${colors[1]})`;
+          comment.style.borderColor = border;
+        });
+      }
+    </script>
+    <script src="./js/cursor.js"></script>
+    <script src="./js/index.js"></script>
+
+  </body>
+</html>

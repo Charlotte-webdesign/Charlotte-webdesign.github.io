@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulated Magma</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <style></style>
+  <body>
+    <div id="bgBox">
+      <div
+        class="bg"
+        id="bg1"
+        style="
+          position: absolute;
+          background-image: url(./img/bg.png);
+          height: 100vh;
+          width: 100%;
+          left: 0;
+          /* transform : translateX(2000px); */
+        "
+      ></div>
+      <div
+        class="bg"
+        id="bg2"
+        style="
+          position: absolute;
+          background-image: url(./img/bg.png);
+          height: 100vh;
+          width: 100%;
+          left: 0;
+        "
+      ></div>
+    </div>
+
+    <div class="banner">
+      <div class="clouds">
+        <img src="./img/cloud1.png" style="--i: 1" alt="" />
+        <img src="./img/cloud2.png" style="--i: 2" alt="" />
+        <img src="./img/cloud3.png" style="--i: 3" alt="" />
+        <img src="./img/cloud4.png" style="--i: 4" alt="" />
+        <img src="./img/cloud5.png" style="--i: 5" alt="" />
+      </div>
+    </div>
+
+    <div id="glow"></div>
+
+    <div id="gif-container">
+      <img id="pop-gif" src="img/fire.gif" alt="Pop Gif" />
+    </div>
+
+    <audio id="sizzle">
+      <source src="music/sizzle.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <script src="./js/index.js"></script>
+  </body>
+</html>

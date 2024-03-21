@@ -1,0 +1,32 @@
+/* 在 index.css 或 output.css 中添加以下样式 */
+
+
+@keyframes expand {
+  0% {
+    width: 200px;
+    height: 200px;
+    opacity: 0.99;
+    background: #f9a8d4;
+    box-shadow: 0 0 20px 20px #f9a8d4;
+
+  }
+  100% {
+    width: 1000px;
+    height: 1000px;
+    background: #dc2626;
+    box-shadow: 0 0 20px 20px #b91c1c;
+
+  }
+}
+
+
+.circle {
+  background: #ffcd16e2;
+  animation: expand 8s ease-in-out infinite alternate;
+  /* 添加光晕效果 */
+
+}
+
+.follower {
+  pointer-events: none;
+}

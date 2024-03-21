@@ -1,0 +1,187 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+.banner {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+
+  background-size: cover;
+  background-position: bottom;
+}
+
+.banner .clouds {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.banner .clouds img {
+  position: absolute;
+  bottom: 0;
+  max-width: 100%;
+  animation: animate calc(8s * var(--i)) linear infinite;
+  z-index: 2;
+}
+
+@keyframes animate {
+  0% {
+    transform: translateX(-100%);
+  }
+  
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes animate1 {
+  0% {
+    transform: translateX(-100%);
+  }
+  
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes loop {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #000;
+  /* background-image: url(../video/particle.mp4); */
+}
+
+#magma {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden; /* Ensure overflow hidden */
+}
+
+.magma-line:nth-child(odd) {
+  height: 4px; /* Odd lines thicker */
+}
+
+.magma-line {
+  position: absolute;
+  top: 0; /* Start from top side */
+  width: 100%;
+  background: linear-gradient(to right, #ff0000, #ff5f00, #ffbf00);
+  animation: magmaColorChange 5s linear infinite alternate;
+}
+
+@keyframes magmaColorChange {
+  0% {
+    background: linear-gradient(to right, #ff0000, #ff5f00, #ffbf00);
+  }
+
+  100% {
+    background: linear-gradient(to right, #ffbf00, #ff5f00, #ff0000);
+  }
+}
+
+#glow {
+  position: absolute;
+  visibility: hidden;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  background-color: rgba(255, 255, 0, 0.8); /* Yellow color */
+  border-radius: 50%; /* Circular shape */
+  pointer-events: none;
+  z-index: 2; /* Ensure glow is on top */
+  box-shadow: 0 0 30px rgba(255, 255, 0, 0.6); /* Add shadow effect */
+}
+
+#gif-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  display: none;
+  z-index: 1; /* Ensure gif is below glow */
+}
+
+#pop-gif {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  pointer-events: none;
+}
+
+/* .bg {
+  position: absolute;
+  height: 100vh;
+  width: 200%; 
+  background-image: url(./img/bg.png);
+  background-size: 400%;
+  animation: scrollBackground 10s linear infinite; 
+} */
+
+.scroll-img {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  animation: loop 3s linear infinite;
+}
+
+@keyframes slideshow {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -200%;
+  }
+}
+
+@keyframes scrollBackground {
+  from {
+    transform: translateX(0); /* 背景图片从左侧开始 */
+  }
+  to {
+    transform: translateX(
+      50%
+    ); /* 背景图片向左移动一个视口的宽度，实现滚动效果 */
+  }
+}
+
+.bg {
+  /* transition: 1s all; */
+}
+
+#bg1 {
+  animation: animate1 10s linear infinite;
+}
+#bg2 {
+  animation: animate2 10s linear infinite;
+}
+
+@keyframes animate2 {
+  0% {
+    transform: translateX(0%);
+  }
+ 
+  100% {
+    transform: translateX(100%);
+  }
+}
